@@ -1,38 +1,930 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primaryColor: #af9a7d;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --darkGrey: #cfcfcf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 3px;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+/* globals */
+body {
+  padding-top: 66px;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.4;
+}
+h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--mainSpacing);
+  color: var(--mainBlack);
+  background: var(--primaryColor);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primaryColor);
+}
+.loading {
+  text-transform: capitalize;
   text-align: center;
+  margin-top: 3rem;
+}
+.error {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}
+.empty-search {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  letter-spacing: var(--mainSpacing);
+}
+/* end of globals */
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  background: var(--offWhite);
+  z-index: 999999;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.nav-icon {
+  font-size: 1.5rem;
+  color: var(--primaryColor);
+}
+.nav-links {
+  height: 0;
+  overflow: hidden;
+  transition: var(--mainTransition);
+  list-style-type: none;
+}
+.nav-links a {
+  display: block;
+  text-decoration: none;
+  padding: 1rem 0;
+  color: var(--mainBlack);
+  transition: var(--mainTransition);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: var(--mainSpacing);
+}
+.nav-links a:hover {
+  color: var(--primaryColor);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.show-nav {
+  height: 100px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (min-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+    margin-left: 4rem;
+  }
+  .nav-links a {
+    margin: 0 1rem;
+    padding: 0.5rem 0;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* end of navbar */
+/* Hero */
+.defaultHero,
+.roomsHero {
+  min-height: calc(100vh - 66px);
+  background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.roomsHero {
+  background-image: url("./images/room-2.jpeg");
+  min-height: 60vh;
+}
+/* End of Hero */
+/* Banner */
+.banner {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--mainWhite);
+  padding: 2rem 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.banner h1 {
+  font-size: 2.5rem;
+}
+.banner div {
+  width: 10rem;
+  height: 5px;
+  background: var(--primaryColor);
+  margin: 1.7rem auto;
+}
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 576px) {
+  .banner {
+    padding: 2rem 3rem;
+  }
+  .banner h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .banner {
+    padding: 2rem 6rem;
+  }
+  .banner h1 {
+    font-size: 4rem;
+  }
+}
+/* End of Banner */
+/* Title */
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-title h4 {
+  font-size: 2rem;
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.section-title div {
+  width: 5rem;
+  height: 5px;
+  margin: 0 auto;
+  background: var(--primaryColor);
+}
+/* end of Title */
+
+/* services */
+.services {
+  padding: 5rem 0;
+}
+.services {
+  background: var(--darkGrey);
+  text-align: center;
+}
+.services-center {
+  width: 90vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 50px;
+}
+.service span {
+  display: inline-block;
+  color: var(--primaryColor);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.services h6 {
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+}
+.services p {
+  width: 80%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 992px) {
+  .services-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+@media screen and (min-width: 1200px) {
+  .services p {
+    width: 100%;
+  }
+}
+/*end of services */
+/* featured rooms */
+
+.featured-rooms {
+  padding: 5rem 0;
+}
+.featured-rooms-center {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 40px;
+}
+@media screen and (min-width: 776px) {
+  .featured-rooms-center {
+    width: 90vw;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
+}
+@media screen and (min-width: 992px) {
+  .featured-rooms-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* end pf featured rooms */
+/* room */
+.room {
+  box-shadow: var(--lightShadow);
+  transition: var(--mainTransition);
+}
+.room:hover {
+  box-shadow: var(--darkShadow);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.img-container {
+  position: relative;
+}
+.img-container img {
+  width: 100%;
+  display: block;
+  transition: var(--mainTransition);
+}
+.price-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--mainWhite);
+  padding: 0.3rem 0.6rem 0.5rem;
+  border-bottom-right-radius: 1rem;
+  font-size: 0.5rem;
+  text-align: center;
+  transition: var(--mainTransition);
+}
+.price-top h6 {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: var(--mainSpacing);
+}
+.room-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0);
+  transition: all 0.3s linear;
+}
+.img-container:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.img-container:hover img {
+  opacity: 0.3;
+}
+.img-container:hover .price-top {
+  opacity: 0;
+}
+.img-container:hover .room-link {
+  transform: translate(-50%, -50%) scale(1);
+}
+.room-info {
+  background: var(--darkGrey);
+  text-transform: capitalize;
+  padding: 0.5rem 0;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: var(--mainSpacing);
+}
+/* end of room  */
+/* single room*/
+
+.single-room {
+  padding: 5rem 0 0 0;
+}
+.single-room-images {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 50px;
+}
+.single-room-images img {
+  width: 100%;
+  display: block;
+}
+.single-room-info {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 2rem auto;
+}
+.desc,
+.info {
+  margin: 1rem 0;
+}
+.desc h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.desc p {
+  line-height: 1.5;
+}
+.info h3,
+.info h6 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+.info h6 {
+  font-weight: 300;
+}
+.room-extras {
+  width: 80vw;
+  margin: 0 auto 3rem auto;
+}
+.room-extras h6 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.extras {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+}
+@media screen and (min-width: 992px) {
+  .single-room-images,
+  .single-room-info,
+  .room-extras {
+    width: 95vw;
+    max-width: 1170px;
   }
-  to {
-    transform: rotate(360deg);
+  .single-room-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
   }
+  .info {
+    padding-left: 3rem;
+  }
+}
+/* end of single room*/
+/* roomlist */
+.roomslist {
+  padding: 5rem 0;
+}
+.roomslist-center {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 30px;
+}
+
+@media screen and (min-width: 776px) {
+  .roomslist-center {
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .roomslist-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* end of roomlist */
+/*  rooms fitler*/
+.filter-container {
+  padding: 5rem 0;
+}
+.filter-form {
+  width: 60vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(202px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 40px;
+}
+.form-group {
+  text-transform: capitalize;
+}
+.form-group label {
+  display: block;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 0.5rem;
+}
+.form-control {
+  width: 100%;
+  background: transparent;
+  font-size: 1rem;
+}
+.size-inputs {
+  display: flex;
+}
+.size-input {
+  width: 40%;
+  padding: 0.2rem;
+  border: 1px solid var(--mainBlack);
+  border-radius: 0.3rem;
+  margin-right: 0.3rem;
+}
+.single-extra label {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+@media screen and (min-width: 776px) {
+  .filter-form {
+    width: 70vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .filter-form {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* end of rooms fitler*/
+
+/* 
+Login css */
+
+/* CSS reset */
+/* body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+margin:0;
+padding:0;
+} */
+/* html,body {
+margin:0;
+padding:0;
+height: 100%;
+} */
+table {
+border-collapse:collapse;
+border-spacing:0;
+}
+fieldset,img { 
+border:0;
+}
+address,caption,cite,code,dfn,th,var {
+font-style:normal;
+font-weight:normal;
+}
+ol,ul {
+list-style:none;
+}
+caption,th {
+text-align:left;
+}
+
+q:before,q:after {
+content:'';
+}
+abbr,acronym { border:0;
+}
+
+/* General Demo Style */
+
+.container{
+width: 100%;
+height: 100%;
+position: relative;
+text-align: center;
+}
+.clr{
+clear: both;
+}
+/* remove codrops styles and reset the whole thing */
+#container_demo{
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+  font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;
+}
+
+a.hiddenanchor{
+ display: none;
+}
+/** The wrapper that will contain our two forms **/
+#wrapper{
+ width: 60%;
+ right: 0px;
+ /* min-height: 560px;	 */
+ margin: 80px auto;	
+ width: 500px;
+ position: relative;	
+}
+/**** Styling the form elements **/
+
+/**** general text styling ****/
+#wrapper a{
+ color: rgb(95, 155, 198);
+ text-decoration: underline;
+}
+
+#wrapper h1{
+ font-size: 48px;
+ color: rgb(6, 106, 117);
+ padding: 2px 0 10px 0;
+ font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+ font-weight: bold;
+ text-align: center;
+ padding-bottom: 30px;
+}
+/** For the moment only webkit supports the background-clip:text; */
+#wrapper h1{
+   background: -webkit-repeating-linear-gradient(-45deg, 
+ rgb(18, 83, 93) , 
+ rgb(18, 83, 93) 20px, 
+ rgb(64, 111, 118) 20px, 
+ rgb(64, 111, 118) 40px, 
+ rgb(18, 83, 93) 40px);
+ -webkit-text-fill-color: transparent;
+
+}
+/* #wrapper h1:after{
+ content: ' ';
+ display: block;
+ width: 100%;
+ height: 2px;
+ margin-top: 10px;
+ background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
+ background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
+ background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+ background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+ background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+ background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+} */
+
+#wrapper p{
+ margin-bottom:15px;
+}
+#wrapper p:first-child{
+ margin: 0px;
+}
+#wrapper label{
+ color: rgb(64, 92, 96);
+ position: relative;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  { 
+ color: rgb(190, 188, 188); 
+ font-style: italic;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+ color: rgb(190, 188, 188);
+ font-style: italic;
+} 
+input {
+ outline: none;
+}
+
+/* all the input except submit and checkbox */
+#wrapper input:not([type="checkbox"]){
+ width: 92%;
+ margin-top: 4px;
+ padding: 10px 5px 10px 32px;	
+ border: 1px solid rgb(178, 178, 178);
+ -webkit-appearance: textfield;
+ -webkit-box-sizing: content-box;
+   -moz-box-sizing : content-box;
+        box-sizing : content-box;
+ -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;
+ -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+         box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+ -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+         transition: all 0.2s linear;
+}
+#wrapper input:not([type="checkbox"]):active,
+#wrapper input:not([type="checkbox"]):focus{
+ border: 1px solid rgba(91, 90, 90, 0.7);
+ background: rgba(238, 236, 240, 0.2);	
+ -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+         box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+} 
+
+/** the magic icon trick ! **/
+[data-icon]:after {
+   content: attr(data-icon);
+   font-family: 'FontomasCustomRegular';
+   color: rgb(106, 159, 171);
+   position: absolute;
+   left: 10px;
+   top: 35px;
+ width: 30px;
+}
+
+/*styling both submit buttons */
+#wrapper p.button input{
+ width: 30%;
+ cursor: pointer;	
+ background: #af9a7d;
+ padding: 8px 5px;
+ font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+ color: #fff;
+ font-size: 24px;	
+ border: 1px solid #af9a7d;	
+ margin-bottom: 10px;	
+ text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+ -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+         border-radius: 3px;	
+ -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+         0px 0px 0px 3px rgb(254, 254, 254),
+         0px 5px 3px 3px rgb(210, 210, 210);
+    -moz-box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+         0px 0px 0px 3px rgb(254, 254, 254),
+         0px 5px 3px 3px rgb(210, 210, 210);
+         box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+         0px 0px 0px 3px rgb(254, 254, 254),
+         0px 5px 3px 3px rgb(210, 210, 210);
+ -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+         transition: all 0.2s linear;
+}
+#wrapper p.button input:hover{
+ background: rgb(74, 179, 198);
+}
+#wrapper p.button input:active,
+#wrapper p.button input:focus{
+ background: rgb(40, 137, 154);
+ position: relative;
+ top: 1px;
+ border: 1px solid rgb(12, 76, 87);	
+ -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+         box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+p.login.button,
+p.signin.button{
+ text-align: right;
+ margin: 5px 0;
+}
+
+
+/* styling the checkbox "keep me logged in"*/
+.keeplogin{
+ margin-top: -5px;
+}
+.keeplogin input,
+.keeplogin label{
+ display: inline-block;
+ font-size: 12px;	
+ font-style: italic;
+}
+.keeplogin input#loginkeeping{
+ margin-right: 5px;
+}
+.keeplogin label{
+ width: 80%;
+}
+
+
+/*styling the links to change from one form to another */
+
+p.change_link{
+ position: absolute;
+ color: rgb(127, 124, 124);
+ left: 0px;
+ height: 20px;
+ width: 440px;
+ padding: 17px 30px 20px 30px;
+ font-size: 16px	;
+ text-align: right;
+ border-top: 1px solid rgb(219, 229, 232);
+ -webkit-border-radius: 0 0  5px 5px;
+    -moz-border-radius: 0 0  5px 5px;
+         border-radius: 0 0  5px 5px;
+ background: rgb(225, 234, 235);
+ background: -moz-repeating-linear-gradient(-45deg, 
+ rgb(247, 247, 247) , 
+ rgb(247, 247, 247) 15px, 
+ rgb(225, 234, 235) 15px, 
+ rgb(225, 234, 235) 30px, 
+ rgb(247, 247, 247) 30px
+ );
+ background: -webkit-repeating-linear-gradient(-45deg, 
+ rgb(247, 247, 247) , 
+ rgb(247, 247, 247) 15px, 
+ rgb(225, 234, 235) 15px, 
+ rgb(225, 234, 235) 30px, 
+ rgb(247, 247, 247) 30px
+ );
+ background: -o-repeating-linear-gradient(-45deg, 
+ rgb(247, 247, 247) , 
+ rgb(247, 247, 247) 15px, 
+ rgb(225, 234, 235) 15px, 
+ rgb(225, 234, 235) 30px, 
+ rgb(247, 247, 247) 30px
+ );
+ background: repeating-linear-gradient(-45deg, 
+ rgb(247, 247, 247) , 
+ rgb(247, 247, 247) 15px, 
+ rgb(225, 234, 235) 15px, 
+ rgb(225, 234, 235) 30px, 
+ rgb(247, 247, 247) 30px
+ );
+}
+#wrapper p.change_link a {
+ display: inline-block;
+ font-weight: bold;
+ background: rgb(247, 248, 241);
+ padding: 2px 6px;
+ color: rgb(29, 162, 193);
+ margin-left: 10px;
+ text-decoration: none;
+ -webkit-border-radius: 4px;
+ -moz-border-radius: 4px;
+ border-radius: 4px;
+ border: 1px solid rgb(203, 213, 214);
+ -webkit-transition: all 0.4s linear;
+ -moz-transition: all 0.4s  linear;
+ -o-transition: all 0.4s linear;
+ -ms-transition: all 0.4s  linear;
+ transition: all 0.4s  linear;
+}
+#wrapper p.change_link a:hover {
+ color: rgb(57, 191, 215);
+ background: rgb(247, 247, 247);
+ border: 1px solid rgb(74, 179, 198);
+}
+#wrapper p.change_link a:active{
+ position: relative;
+ top: 1px;
+}
+/** Styling both forms **/
+#register, 
+#login{
+ position: absolute;
+ top: 0px;
+ width: 88%;	
+ padding: 18px 6% 60px 6%;
+ margin: 0 0 35px 0;
+ background: rgb(247, 247, 247);
+ border: 1px solid rgba(147, 184, 189,0.8);
+ -webkit-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+    -moz-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+         box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+ -webkit-box-shadow: 5px;
+ -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#register{	
+ z-index: 21;
+ opacity: 0;
+}
+#login{
+ z-index: 22;
+}
+#toregister:target ~ #wrapper #register,
+#tologin:target ~ #wrapper #login{
+ z-index: 22;
+ -webkit-animation-name: fadeInLeft;
+ -moz-animation-name: fadeInLeft;
+ -ms-animation-name: fadeInLeft;
+ -o-animation-name: fadeInLeft;
+ animation-name: fadeInLeft;
+ -webkit-animation-delay: .1s;
+ -moz-animation-delay: .1s;
+ -o-animation-delay: .1s;
+ -ms-animation-delay: .1s;
+ animation-delay: .1s;
+}
+#toregister:target ~ #wrapper #login,
+#tologin:target ~ #wrapper #register{
+ -webkit-animation-name: fadeOutLeft;
+ -moz-animation-name: fadeOutLeft;
+ -ms-animation-name: fadeOutLeft;
+ -o-animation-name: fadeOutLeft;
+ animation-name: fadeOutLeft;
+}
+
+/** the actual animation, credit where due : http://daneden.me/animate/ ***/
+.animate{
+ -webkit-animation-duration: 0.5s;
+ -webkit-animation-timing-function: ease;
+ -webkit-animation-fill-mode: both;
+ 
+ -moz-animation-duration: 0.5s;
+ -moz-animation-timing-function: ease;
+ -moz-animation-fill-mode: both;
+ 
+ -o-animation-duration: 0.5s;
+ -o-animation-timing-function: ease;
+ -o-animation-fill-mode: both;
+ 
+ -ms-animation-duration: 0.5s;
+ -ms-animation-timing-function: ease;
+ -ms-animation-fill-mode: both;
+ 
+ animation-duration: 0.5s;
+ animation-timing-function: ease;
+ animation-fill-mode: both;
+}
+
+/** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
+
+.lt8 #wrapper input{
+ padding: 10px 5px 10px 32px;
+   width: 92%;
+}
+.lt8 #wrapper input[type=checkbox]{
+ width: 10px;
+ padding: 0;
+}
+.lt8 #wrapper h1{
+ color: #066A75;
+}
+.lt8 #register{	
+ display: none;
+}
+.lt8 p.change_link,
+.ie9 p.change_link{
+ position: absolute;
+ height: 90px;
+ background: transparent;
+}
+.bookNow{
+  padding: 7px 30px;
+}
+.input-feedback{
+  color: red;
 }
